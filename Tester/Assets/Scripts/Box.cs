@@ -20,7 +20,7 @@ public class Box : MonoBehaviour
 
     void Update()
     {
-        //comment
+        
     }
 
     public void ComeHere(bool isPlayer1)

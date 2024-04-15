@@ -1,6 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Net.WebSockets;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class GameManager : MonoBehaviour
     private GameObject hitGameObject;
     private static int player1Int = 1;
     private static int player2Int = 2;
-    private bool alternatorBool = true;
     void Update()
     {
         CheckTouchOnChefs();
@@ -26,16 +26,13 @@ public class GameManager : MonoBehaviour
 
     void CheckTouchOnChefs()
     {
-        //Debug.Log(queue.Count);
         if(!player1MovementScript.isSelected && !player2MovementScript.isMoving)
         {
-            bool temp = player1MovementScript.FindChef(alternatorBool);
-            if(temp) alternatorBool = !alternatorBool;
+            player1MovementScript.FindChef();
         }
         if(!player2MovementScript.isSelected && !player2MovementScript.isMoving)
         {
-            bool temp = player2MovementScript.FindChef(alternatorBool);
-            if(temp) alternatorBool = !alternatorBool;
+            player2MovementScript.FindChef();
         }
     }
     void CheckQueue()
@@ -57,26 +54,20 @@ public class GameManager : MonoBehaviour
             if(FindTouch() && hitGameObject.layer == 7)
             {
                 Box hitObjectScript = hitGameObject.GetComponent<Box>();
+
+                StartCoroutine(HoldOccupation(hitObjectScript));
+
                 int dequeueValue = queue.Dequeue();
+
                 if(dequeueValue == 1) // ho cliccato prima il giocatore 1
                 {
-                    bool can1GoToFurniture = player1IntScript.heldIngredient.ingredientState == hitObjectScript.acceptableChefState? true: false;
-
-                    if(can1GoToFurniture)
-                    {
-                        player1MovementScript.Deselected();
-                        hitObjectScript.ComeHere(true);
-                    }
+                    player1MovementScript.Deselected();
+                    hitObjectScript.ComeHere(true);
                 }
                 else if(dequeueValue == 2) // ho cliccato prima il giocatore 2
                 {
-                    bool can2GoToFurniture = player2IntScript.heldIngredient.ingredientState == hitObjectScript.acceptableChefState? true: false;
-
-                    if(can2GoToFurniture)
-                    {
-                        player2MovementScript.Deselected();
-                        hitObjectScript.ComeHere(false);
-                    }
+                    player2MovementScript.Deselected();
+                    hitObjectScript.ComeHere(false);
                 }
             }
         }
@@ -107,5 +98,20 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    IEnumerator HoldOccupation(Box box)
+    {
+        if( player1.transform.position == transform.TransformDirection(box.extractionPoint.transform.position) ||
+            player2.transform.position == transform.TransformDirection(box.extractionPoint.transform.position))
+        {
+            box.isOccupied = true;
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(HoldOccupation(box));
+        }
+        else
+        {
+            box.isOccupied = false;
+        }
     }
 }

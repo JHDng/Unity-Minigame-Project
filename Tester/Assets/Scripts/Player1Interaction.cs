@@ -20,17 +20,14 @@ public class Player1Interaction : MonoBehaviour
     
     public void TakeSomething(Ingredient takenIngredient)
     {
-        if(heldIngredient.ingredientState == -1)
-        {
-            SpriteRenderer spriteRenderer = holdingPoint.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = takenIngredient.sprite;
+        SpriteRenderer spriteRenderer = holdingPoint.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = takenIngredient.sprite;
+        
+        animator.SetBool("isHolding", true);
 
-            animator.SetBool("isHolding", true);
-
-            heldIngredient.ingredientIndex = takenIngredient.ingredientIndex;
-            heldIngredient.ingredientState = takenIngredient.ingredientState;
-            heldIngredient.ingredientFinalState = takenIngredient.ingredientFinalState;
-        }
+        heldIngredient.ingredientIndex = takenIngredient.ingredientIndex;
+        heldIngredient.ingredientState = takenIngredient.ingredientState;
+        heldIngredient.ingredientFinalState = takenIngredient.ingredientFinalState;
     }
 
     public async Task StartTimer(float timeToCompleteTask)

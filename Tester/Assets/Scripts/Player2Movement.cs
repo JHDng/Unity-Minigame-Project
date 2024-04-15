@@ -22,7 +22,7 @@ public class Player2Movement : MonoBehaviour
             MovePlayer(givenPosition);
         }
     }
-    public bool FindChef(bool iAmFirst)
+    public bool FindChef()
     {
         if (Input.touchCount > 0)
         {
@@ -37,7 +37,7 @@ public class Player2Movement : MonoBehaviour
                 if (hit.collider != null && hit.collider.gameObject == gameObject)
                 {
                     animator.SetTrigger("isSelected");
-                    Selected(iAmFirst);
+                    Selected();
                     return true;
                 }
             }
@@ -59,18 +59,10 @@ public class Player2Movement : MonoBehaviour
         }
     }
 
-    private void Selected(bool iAmFirst)
+    private void Selected()
     {
         isSelected = true;
         pointerRef.SetActive(true);
-        if(iAmFirst)
-        {
-            pointerAnimator.SetBool("firstTouched", true);
-        }
-        else
-        {
-            pointerAnimator.SetBool("firstTouched", false);
-        }
     }
 
     public void Deselected()

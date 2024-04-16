@@ -379,12 +379,18 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Box.cs"
+"Assets/Scripts/CharacterInteractionScript.cs"
+"Assets/Scripts/CuttingBoard.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/InductionStove.cs"
 "Assets/Scripts/Ingredient.cs"
 "Assets/Scripts/Player1Interaction.cs"
 "Assets/Scripts/Player1Movement.cs"
 "Assets/Scripts/Player2Interaction.cs"
 "Assets/Scripts/Player2Movement.cs"
+"Assets/Scripts/Smoker.cs"
+"Assets/Scripts/Stove.cs"
+"Assets/Scripts/Trashcan.cs"
 -langversion:9.0
 
 /deterministic

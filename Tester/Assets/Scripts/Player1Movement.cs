@@ -10,6 +10,7 @@ public class Player1Movement : MonoBehaviour
     public Box destinationFurniture;
     public bool isSelected = false;
     public bool isMoving = false;
+    public bool isEngaged = false;
     void Start()
     {
         
@@ -22,7 +23,7 @@ public class Player1Movement : MonoBehaviour
             MovePlayer(givenPosition);
         }
     }
-    public bool FindChef(bool iAmFirst)
+    public bool FindChef()
     {
         if (Input.touchCount > 0)
         {
@@ -37,7 +38,7 @@ public class Player1Movement : MonoBehaviour
                 if (hit.collider != null && hit.collider.gameObject == gameObject)
                 {
                     animator.SetTrigger("isSelected");
-                    Selected(iAmFirst);
+                    Selected();
                     return true;
                 }
             }
@@ -48,7 +49,7 @@ public class Player1Movement : MonoBehaviour
     public void MovePlayer(Vector2 givenPosition)
     {
         Deselected();
-        transform.position = Vector3.MoveTowards(transform.position, givenPosition, moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, givenPosition, moveSpeed * Time.deltaTime);
         animator.SetBool("isRunning", true);
         if(new Vector2(transform.position.x, transform.position.y) == givenPosition)
         {
@@ -59,18 +60,10 @@ public class Player1Movement : MonoBehaviour
         }
     }
 
-    private void Selected(bool iAmFirst)
+    private void Selected()
     {
         isSelected = true;
         pointerRef.SetActive(true);
-        if(iAmFirst)
-        {
-            pointerAnimator.SetBool("firstTouched", true);
-        }
-        else
-        {
-            pointerAnimator.SetBool("firstTouched", false);
-        }
     }
 
     public void Deselected()

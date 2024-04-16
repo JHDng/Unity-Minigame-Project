@@ -10,6 +10,7 @@ public class Player2Movement : MonoBehaviour
     public Box destinationFurniture;
     public bool isSelected = false;
     public bool isMoving = false;
+    public bool isEngaged = false;
     void Start()
     {
         
@@ -48,7 +49,7 @@ public class Player2Movement : MonoBehaviour
     public void MovePlayer(Vector2 givenPosition)
     {
         Deselected();
-        transform.position = Vector3.MoveTowards(transform.position, givenPosition, moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, givenPosition, moveSpeed * Time.deltaTime);
         animator.SetBool("isRunning", true);
         if(new Vector2(transform.position.x, transform.position.y) == givenPosition)
         {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,11 +25,11 @@ public class GameManager : MonoBehaviour
 
     void CheckTouchOnChefs()
     {
-        if(!player1MovementScript.isSelected && !player2MovementScript.isMoving)
+        if(!player1MovementScript.isSelected && !player1MovementScript.isMoving && !player1MovementScript.isEngaged)
         {
             player1MovementScript.FindChef();
         }
-        if(!player2MovementScript.isSelected && !player2MovementScript.isMoving)
+        if(!player2MovementScript.isSelected && !player2MovementScript.isMoving && !player2MovementScript.isEngaged)
         {
             player2MovementScript.FindChef();
         }
@@ -102,8 +101,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator HoldOccupation(Box box)
     {
-        if( player1.transform.position == transform.TransformDirection(box.extractionPoint.transform.position) ||
-            player2.transform.position == transform.TransformDirection(box.extractionPoint.transform.position))
+        if( player1MovementScript.givenPosition == (Vector2) transform.TransformDirection(box.extractionPoint.transform.position) ||
+            player2MovementScript.givenPosition == (Vector2) transform.TransformDirection(box.extractionPoint.transform.position))
         {
             box.isOccupied = true;
             yield return new WaitForSeconds(0.1f);

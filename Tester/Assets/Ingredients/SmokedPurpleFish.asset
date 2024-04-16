@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c5b862b0d3697a4a95bb2bc2efd5578, type: 3}
-  m_Name: StovePurpleFish
+  m_Name: SmokedPurpleFish
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 54ea5619850148449bb8c984f4e284ce, type: 3}
-  ingredientIndex: 200
+  ingredientIndex: 400
   ingredientState: 2
   ingredientFinalState: 2

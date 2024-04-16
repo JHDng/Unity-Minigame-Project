@@ -12,10 +12,7 @@ public class Player1Interaction : MonoBehaviour
 
     void Start()
     {
-        heldIngredient.sprite = null;
-        heldIngredient.ingredientIndex = -1;
-        heldIngredient.ingredientState = -1;
-        heldIngredient.ingredientFinalState = 100;
+        EmptyHands();
     }
     
     public void TakeSomething(Ingredient takenIngredient)
@@ -28,6 +25,18 @@ public class Player1Interaction : MonoBehaviour
         heldIngredient.ingredientIndex = takenIngredient.ingredientIndex;
         heldIngredient.ingredientState = takenIngredient.ingredientState;
         heldIngredient.ingredientFinalState = takenIngredient.ingredientFinalState;
+    }
+
+    public void EmptyHands()
+    {
+        SpriteRenderer spriteRenderer = holdingPoint.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = null;
+        heldIngredient.sprite = null;
+        heldIngredient.ingredientIndex = -1;
+        heldIngredient.ingredientState = -1;
+        heldIngredient.ingredientFinalState = 100;
+
+        animator.SetBool("isHolding", false);
     }
 
     public async Task StartTimer(float timeToCompleteTask)

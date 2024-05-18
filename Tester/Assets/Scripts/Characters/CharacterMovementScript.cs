@@ -16,7 +16,6 @@ public class CharacterMovementScript : MonoBehaviour
     public bool isMoving = false;
     public bool isEngaged = false;
     public bool executeRotateAnimation = false;
-    private bool rotateClockwise = true;
     public bool FindChef()
     {
         if (Input.touchCount > 0)
@@ -54,28 +53,10 @@ public class CharacterMovementScript : MonoBehaviour
         }
     }
 
-    public IEnumerator RotateBackAndForth()
+    public void RotateBackAndForth()
     {
-        while (true)
-        {
-            if (rotateClockwise)
-            {
-                while (transform.rotation.eulerAngles.z < maxRotationAngle || transform.rotation.eulerAngles.z > 180)
-                {
-                    transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-                    yield return null;
-                }
-            }
-            else
-            {
-                while (transform.rotation.eulerAngles.z > 360 - maxRotationAngle || transform.rotation.eulerAngles.z < 180)
-                {
-                    transform.Rotate(Vector3.back * rotationSpeed * Time.deltaTime);
-                    yield return null;
-                }
-            }
-            rotateClockwise = !rotateClockwise;
-        }
+        float rotationAngle = Mathf.Sin(Time.time * rotationSpeed) * maxRotationAngle;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationAngle);
     }
 
     private void Selected()

@@ -8,7 +8,8 @@ public class CharacterInteractionScript : MonoBehaviour
     [SerializeField] GameObject holdingPoint;
     [SerializeField] Animator animator;
     [SerializeField] Slider slider;
-    public Ingredient heldIngredient;
+    public IngredientHolder heldIngredient;
+    public Ingredient nullIngredient;
 
     public void TakeSomething(Ingredient takenIngredient)
     {
@@ -17,19 +18,15 @@ public class CharacterInteractionScript : MonoBehaviour
         
         animator.SetBool("isHolding", true);
 
-        heldIngredient.ingredientIndex = takenIngredient.ingredientIndex;
-        heldIngredient.ingredientState = takenIngredient.ingredientState;
-        heldIngredient.ingredientFinalState = takenIngredient.ingredientFinalState;
+        heldIngredient.ingredients[0] = takenIngredient;
     }
 
     public void EmptyHands()
     {
         SpriteRenderer spriteRenderer = holdingPoint.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = null;
-        heldIngredient.sprite = null;
-        heldIngredient.ingredientIndex = -1;
-        heldIngredient.ingredientState = -1;
-        heldIngredient.ingredientFinalState = 100;
+
+        heldIngredient.ingredients[0] = nullIngredient;
 
         animator.SetBool("isHolding", false);
     }
@@ -47,5 +44,18 @@ public class CharacterInteractionScript : MonoBehaviour
         }
 
         sliderCanvas.SetActive(false);
+    }
+
+    public void OrderHoldingPoint(bool yLower)
+    {
+        SpriteRenderer temp = holdingPoint.GetComponent<SpriteRenderer>();
+        if(yLower)
+        {
+            temp.sortingOrder = 8;
+        }
+        else
+        {
+            temp.sortingOrder = 5;
+        }
     }
 }

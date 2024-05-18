@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e791222f8d2fc964f915acb912957b47
+guid: 61b94fd56f111fa47ab5ce9bae9aa75d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638488939205896201
+  platformSettingsDirtyTick: 638513216683210219
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: smoker
+  - name: Smoker
     originalName: 
     pivot: {x: 0.5, y: -0.033333335}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 30
       height: 30
-    spriteID: 103bb5c674b177c43859e99bc6af302a
+    spriteID: 51b259504356a924a99f8642d4ef3417
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1896843939
-    name: smoker
+    guid: -1883923971
+    name: Smoker
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: smoker
+    - name: Smoker
       frameIndex: 0
       cellRect:
         x: 1
         y: 1
         width: 30
         height: 30
-      spriteId: 103bb5c674b177c43859e99bc6af302a
+      spriteId: 51b259504356a924a99f8642d4ef3417
     linkedCells: []
     parentIndex: -1
   platformSettings:

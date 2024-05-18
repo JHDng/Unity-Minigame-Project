@@ -6,5 +6,10 @@ public class Ingredient : ScriptableObject
     public Sprite sprite;
     public int ingredientIndex;
     public int ingredientState;
-    public int ingredientFinalState;
+    //Not Processed = 0
+    //Cut = 1
+    //Induction = 2
+    //Stove = 3
+    //Smoker = 4
+    public Sprite platedIngredient;
 }

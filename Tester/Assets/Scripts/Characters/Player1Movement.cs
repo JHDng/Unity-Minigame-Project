@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst;
 using UnityEngine;
 
 public class Player1Movement : CharacterMovementScript
@@ -9,12 +6,13 @@ public class Player1Movement : CharacterMovementScript
     {
         
     }
-    [BurstCompile]
+    
     void Update()
     {
         if(isMoving)
         {
             MovePlayer(givenPosition);
+            RotateBackAndForth();
         }
         else if(!isMoving)
         {

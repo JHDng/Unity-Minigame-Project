@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Character Management")]
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2;
     [SerializeField] Player1Movement player1MovementScript;
     [SerializeField] Player2Movement player2MovementScript;
     [SerializeField] Player1Interaction player1IntScript;
     [SerializeField] Player2Interaction player2IntScript;
+    [Header("UI Management")]
+    [SerializeField] TextMeshProUGUI scoreText;
     private Queue<int> queue = new Queue<int>();
     private GameObject hitGameObject;
     private static int player1Int = 1;
@@ -21,6 +25,8 @@ public class GameManager : MonoBehaviour
         CheckQueue();
 
         OnQueueFilling();
+
+        OrderLayer();
     }
 
     void CheckTouchOnChefs()
@@ -113,4 +119,22 @@ public class GameManager : MonoBehaviour
             box.isOccupied = false;
         }
     }
+
+    private void OrderLayer()
+    {
+        if(player1.transform.position.y < player2.transform.position.y)
+        {
+            player1.GetComponent<SpriteRenderer>().sortingOrder = 7;
+            player1IntScript.OrderHoldingPoint(true);
+        }
+        else
+        {
+            player1.GetComponent<SpriteRenderer>().sortingOrder = 4;
+            player1IntScript.OrderHoldingPoint(false);
+        }
+    }
+
+    //UI MANAGEMENT
+
+
 }

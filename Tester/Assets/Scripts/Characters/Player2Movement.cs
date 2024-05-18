@@ -12,6 +12,7 @@ public class Player2Movement : CharacterMovementScript
         if(isMoving)
         {
             MovePlayer(givenPosition);
+            RotateBackAndForth();
         }
         else if(!isMoving)
         {

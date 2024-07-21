@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Character
   - Furniture
-  - 
+  - PullBackCollider
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Frontground
     uniqueID: 162519809
+    locked: 0
+  - name: UI
+    uniqueID: 590248429
     locked: 0

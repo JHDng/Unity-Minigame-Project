@@ -16,6 +16,12 @@ public class CharacterMovementScript : MonoBehaviour
     public bool isMoving = false;
     public bool isEngaged = false;
     public bool executeRotateAnimation = false;
+    private LayerMask characterLayer;
+
+    void Start()
+    {
+        
+    }
     public bool FindChef()
     {
         if (Input.touchCount > 0)

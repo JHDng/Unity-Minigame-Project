@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: 014SmokerLimelien
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d86de2e1ee8326f4287178006787d435, type: 3}
+  miniSprite: {fileID: 1825091355181570580, guid: a4701bf55ec168845a6b3e1f68eded75, type: 3}
   ingredientIndex: 1
   ingredientState: 4
+  platedIngredient: {fileID: 0}

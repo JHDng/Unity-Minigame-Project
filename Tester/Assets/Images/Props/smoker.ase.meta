@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61b94fd56f111fa47ab5ce9bae9aa75d
+guid: f0c1b80c1620df749bcd08eca9868dff
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638513216683210219
+  platformSettingsDirtyTick: 638529626792892506
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,16 +123,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Smoker
     originalName: 
-    pivot: {x: 0.5, y: -0.033333335}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 30
-      height: 30
-    spriteID: 51b259504356a924a99f8642d4ef3417
+      width: 31
+      height: 31
+    spriteID: 1315fe74fb83f0645a603442ea5a75ca
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,11 +153,11 @@ ScriptedImporter:
     - name: Smoker
       frameIndex: 0
       cellRect:
-        x: 1
-        y: 1
-        width: 30
-        height: 30
-      spriteId: 51b259504356a924a99f8642d4ef3417
+        x: 0
+        y: 0
+        width: 31
+        height: 31
+      spriteId: 1315fe74fb83f0645a603442ea5a75ca
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -212,4 +212,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 31, y: 32}

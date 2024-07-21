@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 003StovePurpleFish
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 22763a9ccfe506d4195b6884cf72b579, type: 3}
+  miniSprite: {fileID: -2662335976704469606, guid: 4563239bd6514734397b5f6f57c46745, type: 3}
   ingredientIndex: 0
   ingredientState: 3
-  platedIngredient: {fileID: 21300000, guid: cfc860a7ffbe9c141bf27d813b2fa689, type: 3}
+  platedIngredient: {fileID: 3764383133623685727, guid: 8f510a0dae19d9944b03a67fe56213a7, type: 3}

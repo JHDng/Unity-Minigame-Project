@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: 011CutLimelien
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 56996b9864963f04c84e3938105a2373, type: 3}
+  miniSprite: {fileID: 1825091355181570580, guid: a4701bf55ec168845a6b3e1f68eded75, type: 3}
   ingredientIndex: 1
   ingredientState: 1
+  platedIngredient: {fileID: 0}

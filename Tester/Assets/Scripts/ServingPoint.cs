@@ -5,13 +5,15 @@ using UnityEngine;
 public class ServingPoint : Box
 {
     [SerializeField] IngredientHolder[] dishes;
+    [SerializeField] Ingredient[] exceptionIngredients;
     [SerializeField] GameObject displayDishPoint;
+    [SerializeField] Ingredient nullIngredient;
     public IngredientHolder dishOnTable;
     void Start()
     {
         for(int i = 0; i < dishOnTable.ingredients.Length; i++)
         {
-            dishOnTable.ingredients[i] = null;
+            dishOnTable.ingredients[i] = nullIngredient;
         }
     }
 
@@ -26,13 +28,9 @@ public class ServingPoint : Box
         {
             player1MovScript.isEngaged = true;
 
-            if(dishOnTable.ingredients[0] == null)
+            if(!exceptionIngredients.Contains(player1IntScript.heldIngredient.ingredients[0]))
             {
-                UpdateSimpleDish(player1IntScript);
-            }
-            else
-            {
-                UpdateComplexDish(player1IntScript);
+                UpdateDish(player1IntScript);
             }
 
             player1MovScript.isEngaged = false;
@@ -41,18 +39,27 @@ public class ServingPoint : Box
         {
             player2MovScript.isEngaged = true;
 
-            if(dishOnTable.ingredients[0] == null)
+            if(!exceptionIngredients.Contains(player2IntScript.heldIngredient.ingredients[0]))
             {
-                UpdateSimpleDish(player2IntScript);
-            }
-            else
-            {
-                UpdateComplexDish(player2IntScript);
+                UpdateDish(player2IntScript);
             }
 
             player2MovScript.isEngaged = false;
         }
     }
+
+    private void UpdateDish(CharacterInteractionScript player)
+    {
+        if(dishOnTable.ingredients[0] == nullIngredient)
+        {
+            UpdateSimpleDish(player);
+        }
+        else
+        {
+            UpdateComplexDish(player);
+        }
+    }
+
 
     private void UpdateSimpleDish(CharacterInteractionScript player)
     {
@@ -69,8 +76,9 @@ public class ServingPoint : Box
 
     private void UpdateComplexDish(CharacterInteractionScript player)
     {
-        int i = 0, j = 0;
-        while(dishOnTable.ingredients[i] != null)
+        int i = 0;
+        int rightIndex = -1;
+        while(dishOnTable.ingredients[i] != nullIngredient && i < dishOnTable.ingredients.Length)
         {
             i++;
         }
@@ -78,14 +86,27 @@ public class ServingPoint : Box
 
         dishOnTable.ingredients[i] = tempIngredient;
 
-        //fare affinche tutti gli ingredienti del dishontable siano in uno dei dishes (le varie combinazioni)
-        while(dishes[j] != dishOnTable)
+        for(int k = 0; k < dishes.Length && rightIndex == -1; k++)
         {
-            j++;
+            int testPassed = 0;
+            for(int j = 0; j < dishOnTable.ingredients.Length && rightIndex == -1; j++)
+            {
+                for(int z = 0; z < dishes[k].ingredients.Length && rightIndex == -1; z++)
+                {
+                    if(dishOnTable.ingredients[j] == dishes[k].ingredients[z])
+                    {
+                        testPassed++;
+                    }
+                    if(testPassed == dishOnTable.ingredients.Length)
+                    {
+                        rightIndex = k;
+                    }
+                }
+            }
         }
 
         SpriteRenderer spriteRenderer = displayDishPoint.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = dishes[j].sprite;
+        spriteRenderer.sprite = dishes[rightIndex].sprite;
 
         player.EmptyHands();
     }

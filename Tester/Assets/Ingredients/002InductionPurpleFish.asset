@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 002InductionPurpleFish
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: ee2edb5ceada6d640bd5500603d17f84, type: 3}
+  miniSprite: {fileID: -2662335976704469606, guid: 4563239bd6514734397b5f6f57c46745, type: 3}
   ingredientIndex: 0
   ingredientState: 2
-  platedIngredient: {fileID: 21300000, guid: b79c356706f1376438ed97821885a508, type: 3}
+  platedIngredient: {fileID: 4284690163358770448, guid: 692f576d5a0f12a4a8822e01f103fd54, type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 public class Ingredient : ScriptableObject
 {
     public Sprite sprite;
+    public Sprite miniSprite;
     public int ingredientIndex;
     public int ingredientState;
     //Not Processed = 0

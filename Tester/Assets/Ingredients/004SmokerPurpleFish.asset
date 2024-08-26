@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5b862b0d3697a4a95bb2bc2efd5578, type: 3}
+  m_Name: 004SmokerPurpleFish
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: ce8349982eaeda546b75b99e7172998c, type: 3}
+  miniSprite: {fileID: -2662335976704469606, guid: 4563239bd6514734397b5f6f57c46745, type: 3}
+  ingredientIndex: 0
+  ingredientState: 4
+  platedIngredient: {fileID: 274563205785039194, guid: 799ef9601e8452c48b24a4314c04f299, type: 3}

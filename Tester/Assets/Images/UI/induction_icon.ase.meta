@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: induction_icon
     originalName: 
-    pivot: {x: 0.5, y: -0.33333334}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -131,8 +131,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 16
-      height: 9
-    spriteID: 4aaead0f0fc6f3a4ba2f0d3e2b56a5da
+      height: 16
+    spriteID: f88b310e750e7bd4db2390fd723c5b01
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -154,10 +154,10 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 0
-        y: 3
+        y: 0
         width: 16
-        height: 9
-      spriteId: 4aaead0f0fc6f3a4ba2f0d3e2b56a5da
+        height: 16
+      spriteId: f88b310e750e7bd4db2390fd723c5b01
     linkedCells: []
     parentIndex: -1
   platformSettings: []

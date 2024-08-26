@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.Linq;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class ServingPoint : Box
@@ -8,13 +10,19 @@ public class ServingPoint : Box
     [SerializeField] Ingredient[] exceptionIngredients;
     [SerializeField] GameObject displayDishPoint;
     [SerializeField] Ingredient nullIngredient;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] SceneManager sceneManager;
+    [SerializeField] SpriteRenderer dishOnTableSprite;
+    [SerializeField] Sprite emptyPlate;
     public IngredientHolder dishOnTable;
+    private int totalScore = 0;
     void Start()
     {
         for(int i = 0; i < dishOnTable.ingredients.Length; i++)
         {
             dishOnTable.ingredients[i] = nullIngredient;
         }
+        scoreText.text = "Score: 0";
     }
 
     void Update()
@@ -109,5 +117,57 @@ public class ServingPoint : Box
         spriteRenderer.sprite = dishes[rightIndex].sprite;
 
         player.EmptyHands();
+
+        CheckIfRightOrder(dishOnTable);
+    }
+
+    void CheckIfRightOrder(IngredientHolder dish)
+    {
+        GameObject completedOrder;
+        bool[] flags = {false, false, false};
+        bool flag0 = true;
+        for(int i = 0; i < 3 && flag0; i++)
+        {
+            if(sceneManager.ordersPositionObjects[i].transform.childCount > 0)
+            {
+                IngredientHolder dishOfOrder = sceneManager.ordersPositionObjects[i].GetComponentInChildren<Order>().Dish;
+                int j = 0;
+                while(j < dish.ingredients.Length && (!flags[0] || !flags[1] || !flags[2]))
+                {
+                    bool found = false;
+                    int z = 0;
+
+                    while(!found && z < dish.ingredients.Length)
+                    {
+                        if(dish.ingredients[j] == dishOfOrder.ingredients[z] && flags[z] == false)
+                        {
+                            flags[z] = true;
+                            found = true;
+                        }
+                        z++;
+                    }
+                    j++;
+                }
+                if(flags[0] && flags[1] && flags[2])
+                {
+                    completedOrder = sceneManager.ordersPositionObjects[i].transform.GetChild(0).gameObject;
+
+                    dishOnTable.sprite = null;
+                    dishOnTableSprite.sprite = emptyPlate;
+                    for(int k = 0; k < dishOnTable.ingredients.Length; k++)
+                    {
+                        dishOnTable.ingredients[k] = nullIngredient;
+                    }
+
+                    Destroy(completedOrder);
+                    sceneManager.AddOrders();
+                    flag0 = false;
+                    totalScore += 20;
+                    scoreText.text = "SCORE: " + totalScore;
+                }
+            }
+        }
+
+
     }
 }

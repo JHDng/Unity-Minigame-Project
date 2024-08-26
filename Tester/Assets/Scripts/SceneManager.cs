@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class SceneManager : MonoBehaviour
 {
@@ -16,11 +15,17 @@ public class SceneManager : MonoBehaviour
     [SerializeField] OrdersButton ordersButtonScript;
     [Header("UI Management")]
     [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] Transform[] ordersTransform;
+    [SerializeField] public GameObject[] ordersPositionObjects;
+    [SerializeField] GameObject orderPrefab;
     private Queue<int> queue = new Queue<int>();
     private GameObject hitGameObject;
     private static int player1Int = 1;
     private static int player2Int = 2;
+    
+    void Start()
+    {
+        
+    }
 
     void Update()
     {
@@ -163,9 +168,18 @@ public class SceneManager : MonoBehaviour
         }
     }
 
-    private void AddOrders()
+    public void AddOrders()
     {
-        
+        for(int i = 0; i < 3; i++)
+        {
+            if(ordersPositionObjects[i].transform.childCount == 0)
+            {
+                GameObject order = Instantiate(orderPrefab, Vector3.zero, Quaternion.identity);
+                order.transform.SetParent(ordersPositionObjects[i].transform, false);
+                order.transform.localScale = new Vector3(12, 12, 12);
+            }
+        }
     }
+
 
 }

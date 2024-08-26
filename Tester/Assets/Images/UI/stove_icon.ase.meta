@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dfeeecfaec183cf4885e81fb98d90d55
+guid: d77f35dec44e141429e4159e20b670a5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,16 +123,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: stove_icon
     originalName: 
-    pivot: {x: 0.45454547, y: -0.071428575}
+    pivot: {x: 0.4615385, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 11
-      height: 14
-    spriteID: 20e9e9c7a65db88409508f6276ba80d0
+      width: 13
+      height: 16
+    spriteID: d76eb494590bea3438099527608b46b9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,11 +153,11 @@ ScriptedImporter:
     - name: stove_icon
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 1
-        width: 11
-        height: 14
-      spriteId: 20e9e9c7a65db88409508f6276ba80d0
+        x: 2
+        y: 0
+        width: 13
+        height: 16
+      spriteId: d76eb494590bea3438099527608b46b9
     linkedCells: []
     parentIndex: -1
   platformSettings: []

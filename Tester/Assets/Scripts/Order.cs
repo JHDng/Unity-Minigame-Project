@@ -7,23 +7,30 @@ public class Order : MonoBehaviour
     [SerializeField] SpriteRenderer[] ingredientsSprite;
     [SerializeField] SpriteRenderer[] prepModeSprite;
     [SerializeField] Sprite[] prepSprites;
-    
-    void Start()
+    public IngredientHolder Dish;
+
+    void Awake()
     {
         int index = Random.Range(0, Dishes.Length);
 
-        dishSprite.sprite = Dishes[index].sprite;
+        Dish = Dishes[index];
+    }
+    void Start()
+    {
+
+        dishSprite.sprite = Dish.sprite;
 
         for (int i = 0; i < 3; i++)
         {
-            ingredientsSprite[i].sprite = Dishes[index].ingredients[i].miniSprite;
+            ingredientsSprite[i].sprite = Dish.ingredients[i].miniSprite;
         }
 
         for (int i = 0; i < 3; i++)
         {
-            switch(Dishes[index].ingredients[i].ingredientState)
+            switch(Dish.ingredients[i].ingredientState)
             {
                 case 1:
+                    prepModeSprite[i].sprite = null;
                     break;
                 case 2:
                     prepModeSprite[i].sprite = prepSprites[0];

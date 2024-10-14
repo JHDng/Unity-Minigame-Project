@@ -6,6 +6,7 @@ public class CharacterMovementScript : MonoBehaviour
 {
     [SerializeField] private GameObject pointerRef;
     [SerializeField] private Animator pointerAnimator;
+    [SerializeField] private LayerMask characterLayer;
     [SerializeField] public Animator animator;
     [SerializeField] public float moveSpeed;
     [SerializeField] float rotationSpeed = 50f;
@@ -16,7 +17,6 @@ public class CharacterMovementScript : MonoBehaviour
     public bool isMoving = false;
     public bool isEngaged = false;
     public bool executeRotateAnimation = false;
-    private LayerMask characterLayer;
 
     void Start()
     {
@@ -31,10 +31,10 @@ public class CharacterMovementScript : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                
-                RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
+            
+                Collider2D hit = Physics2D.OverlapPoint(touchPosition, characterLayer);
 
-                if (hit.collider != null && hit.collider.gameObject == gameObject)
+                if (hit != null && hit.gameObject == gameObject)
                 {
                     animator.SetTrigger("isSelected");
                     Selected();

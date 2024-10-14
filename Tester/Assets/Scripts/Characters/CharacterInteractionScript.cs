@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CharacterInteractionScript : MonoBehaviour
 {
     [SerializeField] GameObject sliderCanvas;
-    [SerializeField] GameObject holdingPoint;
+    [SerializeField] public GameObject holdingPoint;
     [SerializeField] Animator animator;
     [SerializeField] Slider slider;
     public IngredientHolder heldIngredient;

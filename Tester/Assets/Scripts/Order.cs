@@ -1,23 +1,25 @@
 using UnityEngine;
-
 public class Order : MonoBehaviour
 {
     [SerializeField] IngredientHolder[] Dishes;
-    [SerializeField] SpriteRenderer dishSprite;
-    [SerializeField] SpriteRenderer[] ingredientsSprite;
-    [SerializeField] SpriteRenderer[] prepModeSprite;
+    [SerializeField] UnityEngine.UI.Image dishSprite;
+    [SerializeField] UnityEngine.UI.Image[] ingredientsSprite;
+    [SerializeField] UnityEngine.UI.Image[] prepModeSprite;
     [SerializeField] Sprite[] prepSprites;
+    [SerializeField] GameObject timeBar;
+    [SerializeField] int time;
+    ServingPoint servingPointScript;
     public IngredientHolder Dish;
 
     void Awake()
     {
         int index = Random.Range(0, Dishes.Length);
-
         Dish = Dishes[index];
+
+        servingPointScript = GameObject.Find("ServingPoint").transform.GetChild(0).GetComponent<ServingPoint>();
     }
     void Start()
     {
-
         dishSprite.sprite = Dish.sprite;
 
         for (int i = 0; i < 3; i++)
@@ -43,5 +45,18 @@ public class Order : MonoBehaviour
                     break;
             }
         }
+        AnimateBar();
+    }
+    
+    private void AnimateBar()
+    {
+        LeanTween.scaleX(timeBar, 0, time).setOnComplete(DestroyOrder);
+    }
+
+    void DestroyOrder()
+    {
+        servingPointScript.totalScore -= 20;
+        servingPointScript.scoreText.text = "" + servingPointScript.totalScore;
+        Destroy(gameObject);
     }
 }

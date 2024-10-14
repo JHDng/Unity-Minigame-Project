@@ -50,3 +50,6 @@ TagManager:
   - name: UI
     uniqueID: 590248429
     locked: 0
+  - name: OutsideScene
+    uniqueID: 3085956345
+    locked: 0

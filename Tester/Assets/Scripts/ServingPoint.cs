@@ -10,19 +10,19 @@ public class ServingPoint : Box
     [SerializeField] Ingredient[] exceptionIngredients;
     [SerializeField] GameObject displayDishPoint;
     [SerializeField] Ingredient nullIngredient;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] SceneManager sceneManager;
+    [SerializeField] public TextMeshProUGUI scoreText;
+    [SerializeField] SceneInsideManager sceneManager;
     [SerializeField] SpriteRenderer dishOnTableSprite;
     [SerializeField] Sprite emptyPlate;
     public IngredientHolder dishOnTable;
-    private int totalScore = 0;
+    public int totalScore = 0;
     void Start()
     {
         for(int i = 0; i < dishOnTable.ingredients.Length; i++)
         {
             dishOnTable.ingredients[i] = nullIngredient;
         }
-        scoreText.text = "Score: 0";
+        scoreText.text = "0";
     }
 
     void Update()
@@ -151,6 +151,7 @@ public class ServingPoint : Box
                 if(flags[0] && flags[1] && flags[2])
                 {
                     completedOrder = sceneManager.ordersPositionObjects[i].transform.GetChild(0).gameObject;
+                    Destroy(completedOrder);
 
                     dishOnTable.sprite = null;
                     dishOnTableSprite.sprite = emptyPlate;
@@ -159,12 +160,23 @@ public class ServingPoint : Box
                         dishOnTable.ingredients[k] = nullIngredient;
                     }
 
-                    Destroy(completedOrder);
                     sceneManager.AddOrders();
-                    flag0 = false;
                     totalScore += 20;
-                    scoreText.text = "SCORE: " + totalScore;
                 }
+                else
+                {
+                    dishOnTable.sprite = null;
+                    dishOnTableSprite.sprite = emptyPlate;
+                    for(int k = 0; k < dishOnTable.ingredients.Length; k++)
+                    {
+                        dishOnTable.ingredients[k] = nullIngredient;
+                    }
+
+                    totalScore -= 40;
+                }
+                
+                flag0 = false;
+                scoreText.text = "" + totalScore;
             }
         }
 

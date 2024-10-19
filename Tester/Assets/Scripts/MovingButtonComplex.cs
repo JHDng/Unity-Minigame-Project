@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuStartButton : MonoBehaviour
+public class MovingButtonComplex : MonoBehaviour
 {
     public float moveDuration = 2f;
 
@@ -13,6 +13,6 @@ public class MenuStartButton : MonoBehaviour
 
     void MoveAlongPoints()
     {
-        LeanTween.moveY(gameObject, transform.position.y - 20, moveDuration).setEaseInOutSine().setLoopPingPong();
+        LeanTween.moveY(gameObject, transform.position.y - 50, moveDuration).setEaseInBounce().setLoopPingPong();
     }
 }

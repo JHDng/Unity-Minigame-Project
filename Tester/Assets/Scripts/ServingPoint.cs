@@ -1,7 +1,5 @@
-using System.ComponentModel;
 using System.Linq;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class ServingPoint : Box
@@ -30,29 +28,18 @@ public class ServingPoint : Box
         
     }
 
-    public override void ExtractIngredient(bool iAmOne) //Put ingredient down
+    public override void ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript) //Put ingredient down
     {
-        if(iAmOne && player1IntScript.heldIngredient.ingredients[0].ingredientState > 0)
+        if(interScript.heldIngredient.ingredients[0].ingredientState > 0)
         {
-            player1MovScript.isEngaged = true;
+            movScript.isEngaged = true;
 
-            if(!exceptionIngredients.Contains(player1IntScript.heldIngredient.ingredients[0]))
+            if(!exceptionIngredients.Contains(interScript.heldIngredient.ingredients[0]))
             {
-                UpdateDish(player1IntScript);
+                UpdateDish(interScript);
             }
 
-            player1MovScript.isEngaged = false;
-        }
-        else if(!iAmOne && player2IntScript.heldIngredient.ingredients[0].ingredientState > 0)
-        {
-            player2MovScript.isEngaged = true;
-
-            if(!exceptionIngredients.Contains(player2IntScript.heldIngredient.ingredients[0]))
-            {
-                UpdateDish(player2IntScript);
-            }
-
-            player2MovScript.isEngaged = false;
+            movScript.isEngaged = false;
         }
     }
 
@@ -148,31 +135,25 @@ public class ServingPoint : Box
                     }
                     j++;
                 }
+                
                 if(flags[0] && flags[1] && flags[2])
                 {
                     completedOrder = sceneManager.ordersPositionObjects[i].transform.GetChild(0).gameObject;
                     Destroy(completedOrder);
-
-                    dishOnTable.sprite = null;
-                    dishOnTableSprite.sprite = emptyPlate;
-                    for(int k = 0; k < dishOnTable.ingredients.Length; k++)
-                    {
-                        dishOnTable.ingredients[k] = nullIngredient;
-                    }
 
                     sceneManager.AddOrders();
                     totalScore += 20;
                 }
                 else
                 {
-                    dishOnTable.sprite = null;
-                    dishOnTableSprite.sprite = emptyPlate;
-                    for(int k = 0; k < dishOnTable.ingredients.Length; k++)
-                    {
-                        dishOnTable.ingredients[k] = nullIngredient;
-                    }
-
                     totalScore -= 40;
+                }
+
+                dishOnTable.sprite = null;
+                dishOnTableSprite.sprite = emptyPlate;
+                for(int k = 0; k < dishOnTable.ingredients.Length; k++)
+                {
+                    dishOnTable.ingredients[k] = nullIngredient;
                 }
                 
                 flag0 = false;

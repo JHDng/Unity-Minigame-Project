@@ -14,32 +14,20 @@ public class CuttingBoard : Box
         
     }
 
-    override public async void ExtractIngredient(bool iAmOne)
+    override public async void ExtractIngredient(CharacterInteractionScript interScript , CharacterMovementScript movScript)
     {
-        if(iAmOne && player1IntScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
+        if(interScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
         {
-            Animator animator = player1IntScript.gameObject.GetComponent<Animator>();
-            player1MovScript.isEngaged = true;
+            Animator animator = interScript.gameObject.GetComponent<Animator>();
+            movScript.isEngaged = true;
             animator.SetBool("isCutting", true);
-            SpriteRenderer spriteRenderer = player1IntScript.holdingPoint.GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = interScript.holdingPoint.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = null;
-            await player1IntScript.StartTimer(timeToPrepare);
+            await interScript.StartTimer(timeToPrepare);
             animator.SetBool("isCutting", false);
-            player1IntScript.TakeSomething(ingredientsStored[player1IntScript.heldIngredient.ingredients[0].ingredientIndex]);
-            player1MovScript.isEngaged = false;
+            interScript.TakeSomething(ingredientsStored[interScript.heldIngredient.ingredients[0].ingredientIndex]);
+            movScript.isEngaged = false;
 
-        }
-        else if(!iAmOne && player2IntScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
-        {
-            Animator animator = player2IntScript.gameObject.GetComponent<Animator>();
-            player2MovScript.isEngaged = true;
-            animator.SetBool("isCutting", true);
-            SpriteRenderer spriteRenderer = player2IntScript.holdingPoint.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = null;
-            await player2IntScript.StartTimer(timeToPrepare);
-            animator.SetBool("isCutting", false);
-            player2IntScript.TakeSomething(ingredientsStored[player2IntScript.heldIngredient.ingredients[0].ingredientIndex]);
-            player2MovScript.isEngaged = false;
         }
     }
 }

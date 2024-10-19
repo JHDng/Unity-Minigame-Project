@@ -11,11 +11,19 @@ public class Player1Movement : CharacterMovementScript
     {
         if(isMoving)
         {
+            if(!walkingSoundPlaying)
+            {
+                audioSource.Play();
+                walkingSoundPlaying = true;
+            }
+
             MovePlayer(givenPosition);
             RotateBackAndForth();
         }
         else if(!isMoving)
         {
+            audioSource.Stop();
+            walkingSoundPlaying = false;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
@@ -30,7 +38,14 @@ public class Player1Movement : CharacterMovementScript
             isMoving = false;
             animator.SetBool("isRunning", false);
 
-            destinationFurniture.ExtractIngredient(true); // different when paste
+            destinationFurniture.ExtractIngredient(characterInteractionScript , this);
         }
+    }
+
+    protected override void Selected(AudioClip selectionClip, GameObject pointerRef)
+    {
+        audioSource.PlayOneShot(selectionClip);
+        isSelected = true;
+        pointerRef.SetActive(true);
     }
 }

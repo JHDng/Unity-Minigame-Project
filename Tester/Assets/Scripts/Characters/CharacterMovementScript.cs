@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class CharacterMovementScript : MonoBehaviour
 {
-    [SerializeField] private GameObject pointerRef;
-    [SerializeField] private Animator pointerAnimator;
-    [SerializeField] private LayerMask characterLayer;
-    [SerializeField] public Animator animator;
-    [SerializeField] public float moveSpeed;
+    [Header("Specifics")]
+    [SerializeField] protected float moveSpeed;
     [SerializeField] float rotationSpeed = 50f;
     [SerializeField] float maxRotationAngle = 2;
-    public Vector2 givenPosition = new Vector2();
-    public Box destinationFurniture;
+    [Header("Animator")]
+    [SerializeField] protected Animator animator;
+    [Header("References")]
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] AudioClip walking;
+    [SerializeField] AudioClip selection;
+    [SerializeField] GameObject pointerRef;
+    [SerializeField] LayerMask characterLayer;
+    [SerializeField] protected CharacterInteractionScript characterInteractionScript;
+    [Header("Checks")]
     public bool isSelected = false;
     public bool isMoving = false;
     public bool isEngaged = false;
-    public bool executeRotateAnimation = false;
+    [HideInInspector]   public Vector2 givenPosition = new Vector2();
+    [HideInInspector]   public Box destinationFurniture;
+    protected bool walkingSoundPlaying = false;
 
     void Start()
     {
@@ -37,7 +44,7 @@ public class CharacterMovementScript : MonoBehaviour
                 if (hit != null && hit.gameObject == gameObject)
                 {
                     animator.SetTrigger("isSelected");
-                    Selected();
+                    Selected(selection, pointerRef);
                     return true;
                 }
             }
@@ -46,17 +53,7 @@ public class CharacterMovementScript : MonoBehaviour
     }
 
     virtual public void MovePlayer(Vector2 givenPosition)
-    {
-        Deselected();
-        transform.position = Vector3.MoveTowards(transform.position, givenPosition, moveSpeed * Time.deltaTime);
-        animator.SetBool("isRunning", true);
-        if(new Vector2(transform.position.x, transform.position.y) == givenPosition)
-        {
-            isMoving = false;
-            animator.SetBool("isRunning", false);
-
-            destinationFurniture.ExtractIngredient(true); // different when paste
-        }
+    { 
     }
 
     public void RotateBackAndForth()
@@ -65,10 +62,8 @@ public class CharacterMovementScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rotationAngle);
     }
 
-    private void Selected()
+    virtual protected void Selected(AudioClip selectionClip, GameObject pointerRef)
     {
-        isSelected = true;
-        pointerRef.SetActive(true);
     }
 
     public void Deselected()

@@ -53,7 +53,7 @@ public class Order : MonoBehaviour
         LeanTween.scaleX(timeBar, 0, time).setOnComplete(DestroyOrder);
     }
 
-    void DestroyOrder()
+    private void DestroyOrder()
     {
         servingPointScript.totalScore -= 20;
         servingPointScript.scoreText.text = "" + servingPointScript.totalScore;

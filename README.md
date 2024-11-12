@@ -4,4 +4,4 @@
 - The scripts are entirely written by me and the game design was developed in collaboration with @dug0ng0.
 
 
-The game is thought for android devices, but you can try the web version at this link: .
+The game is thought for android devices, but you can try the web version at this link: [WIP]. 

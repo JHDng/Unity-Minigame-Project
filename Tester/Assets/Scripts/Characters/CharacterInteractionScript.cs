@@ -9,8 +9,8 @@ public class CharacterInteractionScript : MonoBehaviour
     [SerializeField] GameObject sliderCanvas;
     [SerializeField] Animator animator;
     [SerializeField] Slider slider;
-    [HideInInspector]   public IngredientHolder heldIngredient;
-    [HideInInspector]   public Ingredient nullIngredient;
+    [HideInInspector] public IngredientHolder heldIngredient;
+    [HideInInspector] public Ingredient nullIngredient;
 
     public void TakeSomething(Ingredient takenIngredient)
     {
@@ -58,5 +58,15 @@ public class CharacterInteractionScript : MonoBehaviour
         {
             temp.sortingOrder = 5;
         }
+    }
+
+    public void StartStoveAnimation()
+    {
+        animator.SetBool("isStoving", true);
+    }
+
+    public void StopStoveAnimation()
+    {
+        animator.SetBool("isStoving", false);
     }
 }

@@ -16,21 +16,11 @@ public class Trashcan : Box
         
     }
 
-    override public void ExtractIngredient(bool iAmOne)
+    override public void ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript)
     {
-        if(iAmOne)
-        {
-            if(player1IntScript.heldIngredient.ingredients[0] != player1IntScript.nullIngredient)  animator.SetTrigger("Clicked");
-            player1MovScript.isEngaged = true;
-            player1IntScript.EmptyHands();
-            player1MovScript.isEngaged = false;
-        }
-        else if(!iAmOne)
-        {
-            if(player2IntScript.heldIngredient.ingredients[0] != player2IntScript.nullIngredient)  animator.SetTrigger("Clicked");
-            player2MovScript.isEngaged = true;
-            player2IntScript.EmptyHands();
-            player2MovScript.isEngaged = false;
-        }
-    }
+        if(interScript.heldIngredient.ingredients[0] != interScript.nullIngredient)  animator.SetTrigger("Clicked");
+        movScript.isEngaged = true;
+        interScript.EmptyHands();
+        movScript.isEngaged = false;
+}
 }

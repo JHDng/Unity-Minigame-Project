@@ -4,6 +4,7 @@ public class Stove : Box
 {
     [Header("Ingredient")]
     [SerializeField] Ingredient[] ingredientsStored;
+    [SerializeField] Animator animator;
     void Start()
     {
         
@@ -14,21 +15,21 @@ public class Stove : Box
         
     }
     
-    override public async void ExtractIngredient(bool iAmOne)
+    override public async void ExtractIngredient(CharacterInteractionScript interScript , CharacterMovementScript movScript)
     {
-        if(iAmOne && player1IntScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
+        if(interScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
         {
-            player1MovScript.isEngaged = true;
-            await player1IntScript.StartTimer(timeToPrepare);
-            player1IntScript.TakeSomething(ingredientsStored[player1IntScript.heldIngredient.ingredients[0].ingredientIndex]);
-            player1MovScript.isEngaged = false;
-        }
-        else if(!iAmOne && player2IntScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
-        {
-            player2MovScript.isEngaged = true;
-            await player2IntScript.StartTimer(timeToPrepare);
-            player2IntScript.TakeSomething(ingredientsStored[player2IntScript.heldIngredient.ingredients[0].ingredientIndex]);
-            player2MovScript.isEngaged = false;
+            animator.SetBool("engaged", true);
+            interScript.StartStoveAnimation();
+            interScript.holdingPoint.GetComponent<SpriteRenderer>().sprite = null;
+            movScript.isEngaged = true;
+
+            await interScript.StartTimer(timeToPrepare);
+            interScript.TakeSomething(ingredientsStored[interScript.heldIngredient.ingredients[0].ingredientIndex]);
+            
+            animator.SetBool("engaged", false);
+            interScript.StopStoveAnimation();
+            movScript.isEngaged = false;
         }
     }
 }

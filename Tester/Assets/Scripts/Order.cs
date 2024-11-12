@@ -1,13 +1,16 @@
 using UnityEngine;
 public class Order : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] int time;
+    [Header("References")]
     [SerializeField] IngredientHolder[] Dishes;
     [SerializeField] UnityEngine.UI.Image dishSprite;
     [SerializeField] UnityEngine.UI.Image[] ingredientsSprite;
     [SerializeField] UnityEngine.UI.Image[] prepModeSprite;
     [SerializeField] Sprite[] prepSprites;
     [SerializeField] GameObject timeBar;
-    [SerializeField] int time;
+    [SerializeField] Sprite nullSprite;
     ServingPoint servingPointScript;
     public IngredientHolder Dish;
 
@@ -24,7 +27,14 @@ public class Order : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            ingredientsSprite[i].sprite = Dish.ingredients[i].miniSprite;
+            if(Dish.ingredients[i].sprite == null)
+            {
+                ingredientsSprite[i].sprite = nullSprite;
+            }
+            else
+            {
+                ingredientsSprite[i].sprite = Dish.ingredients[i].miniSprite;
+            }
         }
 
         for (int i = 0; i < 3; i++)
@@ -32,7 +42,7 @@ public class Order : MonoBehaviour
             switch(Dish.ingredients[i].ingredientState)
             {
                 case 1:
-                    prepModeSprite[i].sprite = null;
+                    prepModeSprite[i].sprite = nullSprite;
                     break;
                 case 2:
                     prepModeSprite[i].sprite = prepSprites[0];
@@ -53,7 +63,7 @@ public class Order : MonoBehaviour
         LeanTween.scaleX(timeBar, 0, time).setOnComplete(DestroyOrder);
     }
 
-    void DestroyOrder()
+    private void DestroyOrder()
     {
         servingPointScript.totalScore -= 20;
         servingPointScript.scoreText.text = "" + servingPointScript.totalScore;

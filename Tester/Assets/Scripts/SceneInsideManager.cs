@@ -22,16 +22,13 @@ public class SceneInsideManager : MonoBehaviour
     [Header("Countdown Management")]
     [SerializeField] int countdownTime;
     [SerializeField] GameObject countdownTextObject;
-    private Queue<int> queue = new Queue<int>();
+    private Queue<CharacterMovementScript> queue = new Queue<CharacterMovementScript>();
     private GameObject hitGameObject;
-    private static int player1Int = 1;
-    private static int player2Int = 2;
     private bool timerON = true;
     
     async void Start()
     {
         Time.timeScale = 1;
-
         await StartCountdown();
     }
 
@@ -67,13 +64,13 @@ public class SceneInsideManager : MonoBehaviour
     
     void CheckQueue()
     {
-        if(player1MovementScript.isSelected && !queue.Contains(player1Int))
+        if(player1MovementScript.isSelected && !queue.Contains(player1MovementScript))
         {
-            queue.Enqueue(player1Int);
+            queue.Enqueue(player1MovementScript);
         }
-        if(player2MovementScript.isSelected && !queue.Contains(player2Int))
+        if(player2MovementScript.isSelected && !queue.Contains(player2MovementScript))
         {
-            queue.Enqueue(player2Int);
+            queue.Enqueue(player2MovementScript);
         }
     }
 
@@ -85,21 +82,11 @@ public class SceneInsideManager : MonoBehaviour
             {
                 Box hitObjectScript = hitGameObject.GetComponent<Box>();
 
-
                 StartCoroutine(HoldOccupation(hitObjectScript));
 
-                int dequeueValue = queue.Dequeue();
-
-                if(dequeueValue == 1) // ho cliccato prima il giocatore 1
-                {
-                    player1MovementScript.Deselected();
-                    hitObjectScript.ComeHere(true);
-                }
-                else if(dequeueValue == 2) // ho cliccato prima il giocatore 2
-                {
-                    player2MovementScript.Deselected();
-                    hitObjectScript.ComeHere(false);
-                }
+                CharacterMovementScript dequeued = queue.Dequeue();
+                dequeued.Deselected();
+                hitObjectScript.ComeHere(dequeued);
             }
         }
     }

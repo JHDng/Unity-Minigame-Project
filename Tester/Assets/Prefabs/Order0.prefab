@@ -166,14 +166,14 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 1
+  m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &650944692691278702
 GameObject:
@@ -466,6 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38b48b658afb6e41a7bfa4474008f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 25
   Dishes:
   - {fileID: 11400000, guid: b69ac3473ccb4c147955019c007b3925, type: 2}
   - {fileID: 11400000, guid: 40798778544263742b12c3cd953e3fcc, type: 2}
@@ -485,7 +486,7 @@ MonoBehaviour:
   - {fileID: 4190690728293421951, guid: d77f35dec44e141429e4159e20b670a5, type: 3}
   - {fileID: 6582002364070251313, guid: 6ee90e18b832744498c7c5f87c1752bc, type: 3}
   timeBar: {fileID: 7358316318294969344}
-  time: 25
+  nullSprite: {fileID: 21300000, guid: 558c4a31cbe84dd49804cb576df59f99, type: 3}
   Dish: {fileID: 0}
 --- !u!1 &5461606877881734875
 GameObject:
@@ -627,8 +628,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -852,8 +853,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

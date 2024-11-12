@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public BoxCollider2D cameraRef;
+    [SerializeField] BoxCollider2D cameraRef;
 
 	void Start()
     {

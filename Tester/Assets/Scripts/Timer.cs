@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] float levelTimer;
     [SerializeField] AudioSource audioSource;
+    bool gameOver = false;
     
     void Start()
     {
@@ -20,8 +21,9 @@ public class Timer : MonoBehaviour
         {
             levelTimer -= Time.deltaTime;
         }
-        else
+        else if(!gameOver)
         {
+            gameOver = true;
             levelTimer = 0;
             Time.timeScale = 0;
             StopAllAudio();

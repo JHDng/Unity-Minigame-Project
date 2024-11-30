@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ServingPoint : Box
 {
+    [Header("Settings")]
+    [SerializeField] int rightDishPoints = 20;
+    [SerializeField] int wrongDishPoints = 15;
+    [Header("References")]
     [SerializeField] IngredientHolder[] dishes;
     [SerializeField] Ingredient[] exceptionIngredients;
     [SerializeField] GameObject displayDishPoint;
@@ -77,9 +81,8 @@ public class ServingPoint : Box
         {
             i++;
         }
-        Ingredient tempIngredient = player.heldIngredient.ingredients[0];
 
-        dishOnTable.ingredients[i] = tempIngredient;
+        dishOnTable.ingredients[i] = player.heldIngredient.ingredients[0];
 
         for(int k = 0; k < dishes.Length && rightIndex == -1; k++)
         {
@@ -100,11 +103,13 @@ public class ServingPoint : Box
             }
         }
 
-        SpriteRenderer spriteRenderer = displayDishPoint.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = dishes[rightIndex].sprite;
+        if(rightIndex != -1)
+        {
+            SpriteRenderer spriteRenderer = displayDishPoint.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = dishes[rightIndex].sprite;
+        }
 
         player.EmptyHands();
-
         CheckIfRightOrder(dishOnTable);
     }
 
@@ -142,11 +147,11 @@ public class ServingPoint : Box
                     Destroy(completedOrder);
 
                     sceneManager.AddOrders();
-                    totalScore += 20;
+                    totalScore += rightDishPoints;
                 }
                 else
                 {
-                    totalScore -= 40;
+                    totalScore -= wrongDishPoints;
                 }
 
                 dishOnTable.sprite = null;

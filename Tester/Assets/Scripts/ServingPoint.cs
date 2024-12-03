@@ -110,28 +110,29 @@ public class ServingPoint : Box
         }
 
         player.EmptyHands();
-        CheckIfRightOrder(dishOnTable);
+
+        CheckIfRightOrder();
     }
 
-    void CheckIfRightOrder(IngredientHolder dish)
+    void CheckIfRightOrder()
     {
         GameObject completedOrder;
         bool[] flags = {false, false, false};
-        bool flag0 = true;
-        for(int i = 0; i < 3 && flag0; i++)
+        bool outerFlag = true;
+        for(int i = 0; i < 3 && outerFlag; i++)
         {
             if(sceneManager.ordersPositionObjects[i].transform.childCount > 0)
             {
                 IngredientHolder dishOfOrder = sceneManager.ordersPositionObjects[i].GetComponentInChildren<Order>().Dish;
                 int j = 0;
-                while(j < dish.ingredients.Length && (!flags[0] || !flags[1] || !flags[2]))
+                while(j < dishOnTable.ingredients.Length && (!flags[0] || !flags[1] || !flags[2]))
                 {
                     bool found = false;
                     int z = 0;
 
-                    while(!found && z < dish.ingredients.Length)
+                    while(!found && z < dishOnTable.ingredients.Length)
                     {
-                        if(dish.ingredients[j] == dishOfOrder.ingredients[z] && flags[z] == false)
+                        if(dishOnTable.ingredients[j].Equals(dishOfOrder.ingredients[z]) && flags[z] == false)
                         {
                             flags[z] = true;
                             found = true;
@@ -140,7 +141,7 @@ public class ServingPoint : Box
                     }
                     j++;
                 }
-                
+
                 if(flags[0] && flags[1] && flags[2])
                 {
                     completedOrder = sceneManager.ordersPositionObjects[i].transform.GetChild(0).gameObject;
@@ -148,24 +149,28 @@ public class ServingPoint : Box
 
                     sceneManager.AddOrders();
                     totalScore += rightDishPoints;
+                    outerFlag = false;
+
+                    FreePlate();
                 }
-                else
+                else if(i == 2)
                 {
                     totalScore -= wrongDishPoints;
-                }
 
-                dishOnTable.sprite = null;
-                dishOnTableSprite.sprite = emptyPlate;
-                for(int k = 0; k < dishOnTable.ingredients.Length; k++)
-                {
-                    dishOnTable.ingredients[k] = nullIngredient;
+                    FreePlate();
                 }
-                
-                flag0 = false;
                 scoreText.text = "" + totalScore;
             }
         }
+    }
 
-
+    void FreePlate()
+    {
+        dishOnTable.sprite = null;
+        dishOnTableSprite.sprite = emptyPlate;
+        for(int k = 0; k < dishOnTable.ingredients.Length; k++)
+        {
+            dishOnTable.ingredients[k] = nullIngredient;
+        }
     }
 }

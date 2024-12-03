@@ -3,6 +3,7 @@ public class Order : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] int time;
+    [SerializeField] int outOfTimePoints = 10;
     [Header("References")]
     [SerializeField] IngredientHolder[] Dishes;
     [SerializeField] UnityEngine.UI.Image dishSprite;
@@ -65,7 +66,7 @@ public class Order : MonoBehaviour
 
     private void DestroyOrder()
     {
-        servingPointScript.totalScore -= 20;
+        servingPointScript.totalScore -= outOfTimePoints;
         servingPointScript.scoreText.text = "" + servingPointScript.totalScore;
         Destroy(gameObject);
     }

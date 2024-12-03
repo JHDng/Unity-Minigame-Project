@@ -466,7 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38b48b658afb6e41a7bfa4474008f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 25
+  time: 70
+  outOfTimePoints: 100
   Dishes:
   - {fileID: 11400000, guid: b69ac3473ccb4c147955019c007b3925, type: 2}
   - {fileID: 11400000, guid: 40798778544263742b12c3cd953e3fcc, type: 2}

@@ -7,5 +7,7 @@
 - Extensive experimentation and the heavy learning process were involved
 - The scripts are entirely written by me but the game design was developed in collaboration with @dug0ng0
 
-The game is thought for android devices, but you can try an old web version at this link: [WIP]. 
+The game is thought for android devices, you can watch a gameplay 
 Careful! In this version, the Limelien can be put on the serving dish after it has been cooked through the stove only!
+
+add instructions and explanation

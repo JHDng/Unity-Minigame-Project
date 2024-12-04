@@ -1,5 +1,5 @@
+using System.Collections;
 using UnityEngine;
-
 public class Box : MonoBehaviour
 {
     [Header("Ingredient")]
@@ -30,12 +30,12 @@ public class Box : MonoBehaviour
         }
     }
 
-    virtual public async void ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript)
+    public virtual IEnumerator ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript)
     {
         if(interScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
         {
             movScript.isEngaged = true;
-            await interScript.StartTimer(timeToPrepare);
+            yield return StartCoroutine(interScript.StartTimer(timeToPrepare));
             interScript.TakeSomething(ingredientStored);
             movScript.isEngaged = false;
         }

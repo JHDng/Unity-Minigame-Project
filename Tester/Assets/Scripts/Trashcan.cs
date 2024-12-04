@@ -16,11 +16,12 @@ public class Trashcan : Box
         
     }
 
-    override public void ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript)
+    public override IEnumerator ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript)
     {
         if(interScript.heldIngredient.ingredients[0] != interScript.nullIngredient)  animator.SetTrigger("Clicked");
         movScript.isEngaged = true;
         interScript.EmptyHands();
         movScript.isEngaged = false;
-}
+        yield return null;
+    }
 }

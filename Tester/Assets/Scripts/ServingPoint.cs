@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class ServingPoint : Box
         
     }
 
-    public override void ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript) //Put ingredient down
+    public override IEnumerator ExtractIngredient(CharacterInteractionScript interScript, CharacterMovementScript movScript) //Put ingredient down
     {
         if(interScript.heldIngredient.ingredients[0].ingredientState > 0)
         {
@@ -45,6 +46,7 @@ public class ServingPoint : Box
 
             movScript.isEngaged = false;
         }
+        yield return null;
     }
 
     private void UpdateDish(CharacterInteractionScript player)

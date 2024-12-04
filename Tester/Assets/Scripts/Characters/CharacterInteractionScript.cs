@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +33,7 @@ public class CharacterInteractionScript : MonoBehaviour
         animator.SetBool("isHolding", false);
     }
 
-    public async Task StartTimer(float timeToCompleteTask)
+    public IEnumerator StartTimer(float timeToCompleteTask)
     {
         sliderCanvas.SetActive(true);
         float timer = 0;
@@ -41,9 +42,8 @@ public class CharacterInteractionScript : MonoBehaviour
         {
             timer += Time.deltaTime;
             slider.value = timer / timeToCompleteTask;
-            await Task.Delay(1);
+            yield return new WaitForSeconds(0.01f);
         }
-
         sliderCanvas.SetActive(false);
     }
 

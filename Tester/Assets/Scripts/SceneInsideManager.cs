@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class SceneInsideManager : MonoBehaviour
 {
@@ -26,10 +24,10 @@ public class SceneInsideManager : MonoBehaviour
     private GameObject hitGameObject;
     private bool timerON = true;
     
-    async void Start()
+    void Start()
     {
         Time.timeScale = 1;
-        await StartCountdown();
+        StartCoroutine(StartCountdown());
     }
 
     void Update()
@@ -93,27 +91,22 @@ public class SceneInsideManager : MonoBehaviour
     
     bool FindTouch()
     {
-        if (Input.touchCount > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Touch touch = Input.GetTouch(0);
-
+            Vector3 mousePosition = Input.mousePosition;
             
-            if (touch.phase == TouchPhase.Began)
-            {
-                
-                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                
-                RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-                if(hit)
-                {
-                    hitGameObject = hit.collider.gameObject;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+            RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+
+            if(hit)
+            {
+                hitGameObject = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         return false;
@@ -134,7 +127,7 @@ public class SceneInsideManager : MonoBehaviour
         }
     }
 
-    async Task StartCountdown()
+    private IEnumerator StartCountdown()
     {
         TextMeshProUGUI countdownText = countdownTextObject.GetComponent<TextMeshProUGUI>();
 
@@ -142,14 +135,14 @@ public class SceneInsideManager : MonoBehaviour
         {
             countdownText.text = countdownTime.ToString();
 
-            await Task.Delay(1000);
+            yield return new WaitForSeconds(1);
 
             countdownTime--;
         }
 
         countdownText.text = "GO!";
 
-        await Task.Delay(1000);
+        yield return new WaitForSeconds(1);
 
         Destroy(countdownTextObject.transform.parent.gameObject);
 
@@ -174,16 +167,11 @@ public class SceneInsideManager : MonoBehaviour
 
     private void CheckForOrderBar()
     {
-        if (Input.touchCount > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
+            if(ordersButtonScript.buttonSwitch == false)
             {
-                if(ordersButtonScript.buttonSwitch == false)
-                {
-                    ordersButtonScript.HideOrderBar();
-                }
+                ordersButtonScript.HideOrderBar();
             }
         }
     }

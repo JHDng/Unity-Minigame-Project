@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CuttingBoard : Box
 {
@@ -15,7 +16,7 @@ public class CuttingBoard : Box
         
     }
 
-    override public async void ExtractIngredient(CharacterInteractionScript interScript , CharacterMovementScript movScript)
+    public override IEnumerator ExtractIngredient(CharacterInteractionScript interScript , CharacterMovementScript movScript)
     {
         if(interScript.heldIngredient.ingredients[0].ingredientState == acceptableChefState)
         {
@@ -27,7 +28,7 @@ public class CuttingBoard : Box
             movScript.isEngaged = true;
             spriteRenderer.sprite = null;
 
-            await interScript.StartTimer(timeToPrepare);
+            yield return interScript.StartTimer(timeToPrepare);
 
             animator.SetBool("isCutting", false);
             cuttingBoardAnimator.SetBool("engaged", false);

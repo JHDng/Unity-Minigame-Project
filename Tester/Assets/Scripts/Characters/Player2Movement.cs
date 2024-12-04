@@ -38,7 +38,7 @@ public class Player2Movement : CharacterMovementScript
             isMoving = false;
             animator.SetBool("isRunning", false);
 
-            destinationFurniture.ExtractIngredient(characterInteractionScript, this);
+            StartCoroutine(destinationFurniture.ExtractIngredient(characterInteractionScript, this));
         }
     }
 

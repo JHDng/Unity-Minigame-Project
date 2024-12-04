@@ -31,22 +31,19 @@ public class CharacterMovementScript : MonoBehaviour
     }
     public bool FindChef()
     {
-        if (Input.touchCount > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            Vector3 mousePosition = Input.mousePosition;
             
-                Collider2D hit = Physics2D.OverlapPoint(touchPosition, characterLayer);
+            Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-                if (hit != null && hit.gameObject == gameObject)
-                {
-                    animator.SetTrigger("isSelected");
-                    Selected(selection, pointerRef);
-                    return true;
-                }
+            RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+
+            if (hit && hit.collider.gameObject == gameObject)
+            {
+                animator.SetTrigger("isSelected");
+                Selected(selection, pointerRef);
+                return true;
             }
         }
         return false;

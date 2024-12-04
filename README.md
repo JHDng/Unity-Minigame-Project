@@ -1,14 +1,12 @@
-## Keypoints
-+ Some of the scripts are taken from the internet (such as "SafeArea" or the "AutoSaveExtension")
-+ Scripts path: Tester -> Assets -> Scripts
-
 ## About the project
 - The project was inspired by the game "Overcooked"
 - This is one of my first experiences with the Unity Engine, object-oriented programming (and programming in general)
 - Extensive experimentation and the heavy learning process were involved
 - The scripts are entirely written by me but the game design was developed in collaboration with @dug0ng0
+- Some of the scripts were found from the internet (such as "SafeArea" or the "AutoSaveExtension")
+- Scripts path: Tester -> Assets -> Scripts
 
-The game was originally thought for android devices, though you can play an old web version here: 
+The game was originally thought for android devices, though you can play a web-adapted version here: https://play.unity.com/en/games/35b8bb54-c362-4a97-985a-8e0876f142db/alien-bites
 
 ## Instructions && Limitations
 1. To move the chefs click on them. The selection is sequential, so if you click on a chef first, he will move towards a furniture before the second one!

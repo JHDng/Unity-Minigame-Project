@@ -12,7 +12,8 @@ The game was originally thought for android devices, though you can play an old 
 
 ## Instructions && Limitations
 1. To move the chefs click on them. The selection is sequential, so if you click on a chef first, he will move towards a furniture before the second one!
-2. To prepare a dish you need to: pick up the ingredient, cut it, cook it, and finally serve it on the plate!
+2. To prepare a dish you need to: pick up the ingredient, cut it, cook it if needed, and finally serve it on the plate!
 4. Click on the orders button on the top right to see what you need to prepare; no icon means cutting it is enough!
 5. One character occupying a furniture at a time!
-6. Limelien(yellow plant) can only be cooked through the stove!
+6. if you have plated the wrong ingredient, you have to finish the dish anyway!
+7. Limelien(yellow plant) can only be cooked through the stove!

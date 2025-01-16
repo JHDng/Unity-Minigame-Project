@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     
     void Start()
     {
-        trueLevelTimer = levelTimer + 4.35f;
+        trueLevelTimer = levelTimer + 4;
     }
 
     // Update is called once per frame

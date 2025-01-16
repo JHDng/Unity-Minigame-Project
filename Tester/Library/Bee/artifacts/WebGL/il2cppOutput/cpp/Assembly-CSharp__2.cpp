@@ -13606,7 +13606,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Timer_Start_m6820D211A06B2E5E24795D7EBE6
 {
 	{
 		float L_0 = __this->___levelTimer;
-		__this->___trueLevelTimer = ((float)il2cpp_codegen_add(L_0, (4.3499999f)));
+		__this->___trueLevelTimer = ((float)il2cpp_codegen_add(L_0, (4.0f)));
 		return;
 	}
 }

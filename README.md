@@ -1,3 +1,4 @@
+# ALIEN BITES!
 ## About the project
 - The project was inspired by the game "Overcooked"
 - This is one of my first experiences with the Unity Engine, object-oriented programming (and programming in general)

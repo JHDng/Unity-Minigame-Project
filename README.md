@@ -1,5 +1,5 @@
-# ALIEN BITES!
-## About the project
+# 🛸ALIEN BITES!
+## ✏️About the project
 - The project was inspired by the game "Overcooked"
 - This is one of my first experiences with the Unity Engine, object-oriented programming (and programming in general)
 - Extensive experimentation and the heavy learning process were involved
@@ -9,7 +9,7 @@
 
 The game was originally thought for android devices, though you can play a web-adapted version here: https://play.unity.com/en/games/35b8bb54-c362-4a97-985a-8e0876f142db/alien-bites
 
-## Instructions && Limitations
+## 🕹️Instructions && Limitations
 1. To move the chefs click on them. The selection is sequential, so if you click on a chef first, he will move towards a furniture before the second one!
 2. To prepare a dish you need to: pick up the ingredient, cut it, cook it if needed, and finally serve it on the plate!
 4. Click on the orders button on the top right to see what you need to prepare; no icon means cutting it is enough!
